@@ -4,8 +4,12 @@ import sqlite3
 connection = sqlite3.connect ('my_db.db')
 cursor = connection.cursor()
 
-# Изменение данных
-cursor.execute('UPDATE Users SET age = ? WHERE username = ?', (29, 'newuser'))
+cursor.execute('SELECT * FROM Users')
+users = cursor.fetchall()
+
+#вывод
+for user in users:
+    print(user)
 
 #сохр
 connection.commit()
