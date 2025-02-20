@@ -4,13 +4,11 @@ import sqlite3
 connection = sqlite3.connect ('my_db.db')
 cursor = connection.cursor()
 
-cursor.execute('SELECT * FROM Users')
-users = cursor.fetchall()
+cursor.execute('SELECT username, age FROM users WHERE age > ?', (25,))
+results = cursor.fetchall()
 
 #вывод
-for user in users:
-    print(user)
+for row in results:
+    print(row)
 
-#сохр
-connection.commit()
 connection.close()
