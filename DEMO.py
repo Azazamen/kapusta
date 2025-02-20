@@ -51,13 +51,19 @@ cursor = connection.cursor()
 ##max_age = cursor.fetchone() [0]
 ##print('Минимальный возраст пользователей:', max_age)
 
-cursor.execute('''
-SELECT username, age
-FROM Users
-WHERE age = (SELECT MAX(age) FROM Users)
-''')
-old_users = cursor.fetchall()
-for row in old_users:
+##cursor.execute('''
+##SELECT username, age
+##FROM Users
+##WHERE age = (SELECT MAX(age) FROM Users)
+##''')
+##old_users = cursor.fetchall()
+##for row in old_users:
+##    print(row)
+
+cursor.execute('SELECT * FROM Users ')
+results = cursor.fetchall()
+#вывод
+for row in results:
     print(row)
-    
+
 connection.close()
