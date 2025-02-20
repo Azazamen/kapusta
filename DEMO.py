@@ -15,11 +15,23 @@ cursor = connection.cursor()
 ##filtered_results = cursor.fetchall()
 ##for row in filtered_results:
 ##    print(row)
+##
+##cursor.execute('SELECT age, AVG(age) FROM users ORDER BY age DESC')
+##results = cursor.fetchall()
+###вывод
+##for row in results:
+##    print(row)
 
-cursor.execute('SELECT age, AVG(age) FROM users ORDER BY age DESC')
+cursor.execute('''
+SELECT username, age, AVG(age)
+FROM Users
+GROUP BY age
+HAVING AVG(age) > ?
+ORDER BY age DESC
+''', (28,))
 results = cursor.fetchall()
-#вывод
 for row in results:
     print(row)
+
 
 connection.close()
